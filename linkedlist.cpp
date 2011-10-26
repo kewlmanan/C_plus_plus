@@ -25,7 +25,7 @@ class ll
 	int search(int); // Search for a particular value 
  	int size(); // Gives the size of list
 	void reverse(); // Reverses a linkedlist
-	void copy(ll src);
+	void copy(ll src); // Copies the src linkedlist into a new one
 	
 };
 
