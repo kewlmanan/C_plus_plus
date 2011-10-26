@@ -16,14 +16,17 @@ class ll
 	public:
 	ll();
 	~ll();
-	void add_at_front(int);
-	void append(int);
-	void add_after_n(int,int);
-	void remove(int);
-	void display();
-	int search(int);	
- 	int size();	
-
+	void add_at_front(int); // Add a value at the start 
+	void append(int); // Add a value at the end
+	void add_after_n(int,int); // Add a value after n nodes
+	void add_after(int,int); // Add a value after a particular no
+	void remove(int); // Remove a node
+	void display(); // Display the list
+	int search(int); // Search for a particular value 
+ 	int size(); // Gives the size of list
+	void reverse(); // Reverses a linkedlist
+	void copy(ll src);
+	
 };
 
 ll::ll()
@@ -112,6 +115,35 @@ int ll::size()
 	}
 	cout<<"\nSize of LinkedList is : "<<n;
 	return n;
+}
+
+void ll::add_after(int x, int y)
+{
+	
+	if(head == NULL)
+	{
+		cout<<"\nLinkedList does not exist";
+		return;
+	}
+	
+	node *ptr,*tmp;
+	ptr=head;	
+	while(ptr->data != y)
+	{
+		ptr=ptr->next;
+		if(ptr == NULL)
+		{
+			cout<<"\nElement "<<y<<" is not present in LinkedList and so cannot add "<<x;
+			return;
+		}
+	}
+	
+	tmp=new node;
+	tmp->data=x;
+	tmp->next=ptr->next;
+	ptr->next=tmp;
+	
+	display();
 }
 
 void ll::add_after_n(int x, int n)
@@ -229,7 +261,36 @@ int ll::search( int x)
 	}
 }
 
-
+void ll::reverse()
+{
+	if ( head == NULL)
+	{
+		cout<<"\nLinkedList not present. Nothing to Reverse";
+		return;
+	}
+	
+	if( head->next == NULL)
+	{
+		cout<<"\nLinkedList contains only one element. Nothing to Reverse";
+		return;
+	}
+	
+	node *ptr,*prev;
+	ptr=head;
+	prev=NULL;
+	
+	while(ptr)
+	{
+		head=head->next;
+		ptr->next=prev;
+		prev = ptr;
+		ptr=head;
+	}
+	
+	head=prev;
+	cout<<"\nReversed LinkedList is";
+	display();
+}
 void ll::display()
 {
 	if(head==NULL)
@@ -251,10 +312,31 @@ void ll::display()
 	}
 }
 
+void ll::copy(ll src)
+{
+	int x;
+	if(src.head==NULL)
+	{
+		cout<<"\nSource list is empty. Nothing to copy";
+		return;
+	}
+	node *ptr;
+	ptr=src.head;
+	node *tmp=new node;
+	while(ptr)
+	{	
+		x=ptr->data;
+		append(x);
+		ptr=ptr->next;
+	}
+	display();
+}
+
 int main()
 {
-	ll ll;
 	
+	ll ll,ll2;
+
 	ll.display();
 	ll.append(3);
 	ll.append(4);
@@ -262,9 +344,16 @@ int main()
 	ll.append(6);
 	
 	ll.display();
-	ll.remove(7);
-	ll.display();
-	ll.add_after_n(4,9);
-	ll.display();
+
+//	ll.remove(7);
+//	ll.display();
+//	ll.add_after_n(10,2);
+//	ll.display();
+	
+//	ll.reverse();
+//	ll.add_after(7,5);
+	ll2.copy(ll);
+	
+
 	return 0;
 }
