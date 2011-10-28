@@ -17,7 +17,7 @@ class lstack
              lstack();
              ~lstack();
              void push(int);
-             int pop();
+             void pop();
              void display();
 };
 
@@ -60,12 +60,12 @@ void lstack::push(int x)
 
 }
 
-int lstack::pop()
+void lstack::pop()
 {
     if(top==NULL)
     {
       cout<<"The stack is empty"<<endl;
-      return 0;
+      return;
     }
     
     node *tmp;
@@ -76,7 +76,7 @@ int lstack::pop()
     cout<<endl<<n<<":Popped"<<endl<<endl;
     cout<<"Current Stack"<<endl;
     display();
-    return n;
+    return;
 }
 
 void lstack::display()
