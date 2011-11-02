@@ -19,7 +19,7 @@ class lqueue
              lqueue();
              ~lqueue();
              void add(int);
-             void remove();
+             int remove();
              void display();
 };
 
@@ -53,7 +53,7 @@ void lqueue::add(int x)
      tmp=new node;
       if(tmp==NULL)
      {
-                  cout<<"\nQueue is Full"<<endl;
+                  cout<<"Queue is Full"<<endl;
                   return;
      }
      if(front==NULL)
@@ -73,21 +73,20 @@ void lqueue::add(int x)
      display();
 }
 
-void lqueue::remove()
+int lqueue::remove()
 {
      if(front==NULL)
      {
-      cout<<"\nQueue is Empty"<<endl;
-      return;
+      cout<<"Queue is Empty"<<endl;
+      return NULL;
      }
      node *tmp;
      tmp=front;
      int n=tmp->data;
      front=front->link;
      delete tmp;
-     cout<<n<<" has been deleted from queue";
      display();
-     return;
+     return n;
 }
 
 void lqueue::display()
@@ -96,7 +95,7 @@ void lqueue::display()
      tmp=front;
      
      int count=0;
-     cout<<"\nCurrent Queue"<<endl;
+     cout<<"Current Queue"<<endl;
      while(tmp)
      {         count++;
                cout<<" "<<tmp->data;
@@ -112,8 +111,8 @@ lqueue q;
 
 q.add(1);
 q.add(3);
-q.remove();
-q.remove();
+cout<<"Element Removed : "<<q.remove()<<endl;
+cout<<"Element Removed : "<<q.remove()<<endl;
 
 return 0;
 }
