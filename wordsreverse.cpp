@@ -44,7 +44,7 @@ void revwords(char s[])
         wordend=-1;
                 
     }
-                   }
+ }
    if(wordstart!= -1) // Last word as the word end will nt be set as there will be no space  
    {
      strreverse(s,wordstart,(len-1));             
